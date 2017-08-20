@@ -1,0 +1,63 @@
+Palindrome number Program in PHP
+
+Palindrome number means number remain same after reverse any number. For example we reverse 121 result will be 121 so it is palindrome number.
+------------------------------------------------------------------------
+<?php
+
+$num = 121;
+$p=$num;
+$revnum = 0;
+while ($num != 0)
+{
+$revnum = $revnum * 10 + $num % 10;
+//below cast is essential to round remainder towards zero
+$num = (int)($num / 10); 
+}
+ 
+if($revnum==$p)
+{
+echo $p," is Palindrome number";
+}
+else
+{
+echo $p." is not Palindrome number";
+}
+
+?>
+-------------------------------------------------------------------------
+Using recursion
+-------------------------------------------------------------------------
+<?php
+ 
+// check if a string is a palindrome from the command line 
+$inputstring = $argv[1];
+ 
+function isPalindrome($inputstring)
+{
+    if (strlen($inputstring) <= 1){
+        // if there is only one or zero characters, technically it's a palindrome
+        return true;
+    }
+    else {
+
+        if (substr($inputstring,0,1) == substr($inputstring,(strlen($inputstring) - 1),1)) {
+
+             return isPalindrome(substr($inputstring,1,strlen($inputstring) -2));
+            
+            }
+            else { 
+            
+                return false; 
+            
+            }
+     }
+}
+ 
+if (isPalindrome($inputstring) == true){
+ 
+    echo "\n\nCongrats you've got yourself a palindrome.\n\n";
+ 
+}else {
+ 
+    echo "\n\nSorry, This is not a palindrome\n\n";
+} 
